@@ -16,17 +16,21 @@ const RegexMatcherWidget: React.FC<any> = () => {
     const [matchedIndices, setMatchedIndices] = useState<number[]>([])
 
     function matchPattern() {
-        const matchIterator = testString.matchAll(new RegExp(pattern, flags));
-        let match = matchIterator.next();
-        const matchedIndex: number[] = [];
-        while (match && match.value) {
-            const index = match.value.index;
-            const len = match.value[0].length;
-            for (let i = index; i < index + len; i++)
-                matchedIndex.push(i);
-            match = matchIterator.next();
+        try {
+            const matchIterator = testString.matchAll(new RegExp(pattern, flags));
+            let match = matchIterator.next();
+            const matchedIndex: number[] = [];
+            while (match && match.value) {
+                const index = match.value.index;
+                const len = match.value[0].length;
+                for (let i = index; i < index + len; i++)
+                    matchedIndex.push(i);
+                match = matchIterator.next();
+            }
+            setMatchedIndices(matchedIndex);
+        }catch(e) {
+            console.log(e);
         }
-        setMatchedIndices(matchedIndex);
     }
 
     return (<>

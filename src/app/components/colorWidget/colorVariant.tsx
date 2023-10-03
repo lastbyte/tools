@@ -5,7 +5,14 @@ import tinycolor from "tinycolor2";
 import Typography from "@mui/material/Typography";
 import copy from "copy-to-clipboard";
 import Button from "@mui/material/Button";
-import {AddOutlined, Delete} from "@mui/icons-material";
+import {
+    AddOutlined,
+    Delete,
+    DeleteOutline,
+    DeleteOutlined,
+    DeleteOutlineSharp,
+    DeleteTwoTone
+} from "@mui/icons-material";
 
 interface ColorVariantProps {
     color: string;
@@ -58,7 +65,7 @@ export function ColorVariant(props: ColorVariantProps) {
                 <Button
                     variant={"text"}
                     sx={(theme) => ({
-                        color: theme.palette.error.dark,
+                        color: theme.palette.error.main,
                         minWidth: "50px",
                         fontSize: "24px",
                         height: "32px",
@@ -69,7 +76,7 @@ export function ColorVariant(props: ColorVariantProps) {
                         props.removeFromPallete(props.colorPalleteIndex);
                     }}
                 >
-                    <Delete/>
+                    <DeleteTwoTone/>
                 </Button>
             </Grid>
         </Grid>
