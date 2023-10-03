@@ -26,6 +26,7 @@ code {
 
 .toastui-editor-md-custom-block-line-background, .toastui-editor-md-code-block-line-background,.toastui-editor-md-table {
     padding: 2px 16px !important;
+    font-family: 'Fira Mono';
 }
 
 .toastui-editor-md-table {

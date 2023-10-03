@@ -5,12 +5,12 @@ import GoogleFontWidget from "@components/googleFontWidget";
 import {Grid} from "@mui/material";
 import Widget from "@components/widget";
 import GlobalSearchBar from "@components/globalSearchBar";
-import RegexMatcherWidget from "@components/regexMatcher";
 import ThemeToggleButton from "@components/themeToggleButton";
 import {CodeTwoTone, Colorize, Google} from "@mui/icons-material";
 import MarkdownEditorWidget from "@components/markdownEditorWidget";
 import CodeSnippetsWidget from "@components/codeSnippetsWidget";
 import {CodeIcon, ColorPickerIcon, FileCodeIcon, FontIcon, MarkDownIcon} from "@app/utility/faUtility";
+import RegexMatcherWidget from "@components/regexMatcherWidget";
 
 interface HomeProps {
 
@@ -19,7 +19,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = (props: HomeProps) => {
     return <>
         <Grid container sx={(theme) => ({
-            gap: theme.spacing(4),
+            gap: theme.spacing(3),
             boxSizing : 'border-box',
             background: theme.palette.background.default,
             flexDirection: 'column',
@@ -41,27 +41,24 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
             </Grid>
             <Grid spacing={4} container sx={(theme) => ({
                 background: theme.palette.background.default,
-                padding : theme.spacing(1),
+                padding : theme.spacing(2),
                 flex : 1,
                 justifyContent: "flex-start",
                 alignSelf: 'stretch',
                 flexWrap: 'wrap',
                 boxSizing : "border-box"
             })} className="App">
-                <Grid item xs={12} sm={8} md={8} lg={6} xl={6} boxSizing="border-box">
+                <Grid item xs={12} sm={12} md={12} lg={6} xl={6} boxSizing="border-box">
                     <Widget title="Color Picker" icon={ColorPickerIcon} widget={ColorWidget} height={600}/>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} lg={3} xl={3} boxSizing="border-box">
+                <Grid item xs={12} sm={6} md={6} lg={3} xl={3} boxSizing="border-box">
                     <Widget title="Google Fonts" icon={FontIcon} widget={GoogleFontWidget} minHeight={600} height={600}/>
                 </Grid>
-                <Grid item xs={12} sm={4} md={4} lg={3} xl={3} boxSizing="border-box">
+                <Grid item xs={12} sm={6} md={6} lg={3} xl={3} boxSizing="border-box">
                     <Widget title="Regex Matcher" icon={CodeIcon} widget={RegexMatcherWidget} minHeight={600} height={600}/>
                 </Grid>
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12} boxSizing="border-box">
                     <Widget title="Markdown editor" icon={MarkDownIcon} widget={MarkdownEditorWidget} height="auto"/>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12} boxSizing="border-box">
-                    <Widget title="Code Snippets" icon={FileCodeIcon} widget={CodeSnippetsWidget} height="auto"/>
                 </Grid>
             </Grid>
         </Grid>

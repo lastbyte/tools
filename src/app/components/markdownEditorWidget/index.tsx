@@ -16,64 +16,13 @@ import "@toast-ui/chart/dist/toastui-chart.min.css";
 import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css';
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css";
+import {mdText} from "@components/markdownEditorWidget/markdownDefaultText";
 
 const MarkdownEditorWidget : React.FC<any> = () => {
 
     const theme = useSelector((state : any) => state.theme.value);
     const [editor, setEditor] = useState<any>(null);
-    const [editorText, setEditorText] = useState(`$$chart
-,category1,category2
-Jan,21,23
-Feb,31,17
-
-type: column
-title: Monthly Revenue
-x.title: Amount
-y.title: Month
-y.min: 1
-y.max: 40
-y.suffix: $
-$$
-\`\`\`js
-console.log('foo')
-\`\`\`
-\`\`\`javascript
-console.log('bar')
-\`\`\`
-\`\`\`html
-<div id="editor"><span>baz</span></div>
-\`\`\`
-\`\`\`wrong
-[1 2 3]
-\`\`\`
-\`\`\`clojure
-[1 2 3]
-\`\`\`
-| @cols=2:merged |
-| --- | --- |
-| table | table2 |
-$$uml
-partition Conductor {
-  (*) --> "Climbs on Platform"
-  --> === S1 ===
-  --> Bows
-}
-
-partition Audience #LightSkyBlue {
-  === S1 === --> Applauds
-}
-
-partition Conductor {
-  Bows --> === S2 ===
-  --> WavesArmes
-  Applauds --> === S2 ===
-}
-
-partition Orchestra #CCCCEE {
-  WavesArmes --> Introduction
-  --> "Play music"
-}
-$$`);
+    const [editorText, setEditorText] = useState(mdText);
 
     const markdownRef = useRef(null);
     useEffect(() => {

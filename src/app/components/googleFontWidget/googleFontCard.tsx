@@ -1,7 +1,8 @@
-import {CopyAll, OpenInNew} from "@mui/icons-material";
-import {Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, IconButton} from "@mui/material";
+import {ContentCopyRounded, CopyAll, OpenInNew} from "@mui/icons-material";
+import {Button, Card, CardActions, CardContent, CardHeader, Chip, Divider, Grid, IconButton} from "@mui/material";
 import React, {useState} from "react";
 import copy from "copy-to-clipboard";
+import tinycolor from "tinycolor2";
 
 interface GoogleFontCardProps {
     font: any;
@@ -54,21 +55,35 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
                     alignItems: "center",
                     width: "100%",
                     height: "120px"
-                })}><Button onClick={() => setPreview(true)} variant="contained"> Show preview </Button></Grid>}
+                })}><Button onClick={() => setPreview(true)} > Show preview </Button></Grid>}
 
                 <Divider/>
             </CardContent>
             <CardActions>
-                <Button onClick={() => {
-                    copy(text("LINK"))
-                }} startIcon={<CopyAll/>} variant="outlined" size="small">
-                    &lt;link&gt;
-                </Button>
-                <Button onClick={() => {
-                    copy(text("IMPORT"))
-                }} startIcon={<CopyAll/>} variant="outlined" size="small">
-                    @import
-                </Button>
+                <Chip
+                    color="primary"
+                    sx={{width: "fit-content", flex: "1"}}
+                    label={"<link>"}
+                    onClick={() => {
+                        copy(text("LINK"))
+                    }}
+                    onDelete={() => {
+                        copy(text("LINK"))
+                    }}
+                    deleteIcon={<ContentCopyRounded/>}
+                />
+                <Chip
+                    color="primary"
+                    sx={{width: "fit-content", flex: "1"}}
+                    label={"@import"}
+                    onClick={() => {
+                        copy(text("IMPORT"))
+                    }}
+                    onDelete={() => {
+                        copy(text("IMPORT"))
+                    }}
+                    deleteIcon={<ContentCopyRounded/>}
+                />
             </CardActions>
         </Card>
     );

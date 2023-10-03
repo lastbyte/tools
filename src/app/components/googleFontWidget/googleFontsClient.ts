@@ -1,21 +1,13 @@
-import { escape } from "lodash";
 import Fuse from "fuse.js";
 import fonts from './fonts.json';
-
-const uris  = {
-    base : "https://registry.npmjs.com",
-    paths : {
-        search : "/v1/search/",
-    }
-};
 
 
 export function searchFonts(keyword? : string) {
 
     const fuseOptions = {
-        // isCaseSensitive: false,
+        isCaseSensitive: false,
         // includeScore: false,
-        // shouldSort: true,
+        shouldSort: true,
         // includeMatches: false,
         // findAllMatches: false,
         // minMatchCharLength: 1,

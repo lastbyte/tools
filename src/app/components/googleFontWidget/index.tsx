@@ -1,6 +1,6 @@
 import {Avatar, Card, CardActions, CardContent, CardHeader, Grid, IconButton} from "@mui/material";
 import React, {useState} from "react";
-import {GoogleFontCard} from "./GoogleFontCard";
+import {GoogleFontCard} from "./googleFontCard";
 import {searchFonts} from "./googleFontsClient";
 import SearchBar from "./searchBar";
 import fonts from './fonts.json';
