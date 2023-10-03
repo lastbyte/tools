@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.toastui-editor-toolbar-item-wrapper {
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.toastui-editor-md-code-block-line-background.start, .toastui-editor-md-custom-block-line-background.start {
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+}
+
+.toastui-editor-md-custom-block-line-background, .toastui-editor-md-code-block-line-background,.toastui-editor-md-table {
+    padding: 2px 16px !important;
+}
+
+.toastui-editor-md-table {
+    padding: 4px 16px !important;
+    height: fit-content !important;
+    display: block !important;
+}
+
+.toastui-editor-mode-switch{
+    display: none !important;
+}

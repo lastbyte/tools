@@ -1,0 +1,48 @@
+.counter_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: max-content;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+.display_step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.display span, .display_step span {
+    font-size: 2rem;
+}
+
+.up, .down {
+    all: unset;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 100px;
+}

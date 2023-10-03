@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+body,html {
+    height: 100%;
+    overflow: scroll;
+}
+
+.App , #App {
+    height: 100%;
+    overflow: scroll;
+}
