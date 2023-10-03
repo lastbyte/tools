@@ -78,7 +78,6 @@ const RegexMatcherWidget: React.FC<any> = () => {
                 <Grid sx={(theme) => ({
                     position: 'absolute',
                     height: '100%',
-                    width: '100%',
                     zIndex: -1,
                     padding: theme.spacing(1)
                 })}>
@@ -86,20 +85,39 @@ const RegexMatcherWidget: React.FC<any> = () => {
                         switch (c) {
                             case '\n' :
                                 return <br/>;
-                            default :
+                            case ' ' :
                                 return <Typography
                                     sx={(theme) => ({
-                                        display: 'inline',
+                                        display: 'inline-block',
                                         height: 'max-content',
+                                        padding : '1px',
+                                        marringBottom : '4px',
                                         width: 'max-content',
                                         lineHeight: 1.5,
                                         justifyContent: "center",
                                         alignItems: "center",
                                         textAlign: 'center',
                                         fontFamily: 'Fira Mono',
+                                        color : 'rgba(255,255,255,0.2)',
                                         backgroundColor: matchedIndices.includes(_) ? 'rgba(161, 245, 196, 0.5)' : 'transparent'
                                     })}
-                                    component="span">{c !== ' ' ? c : <i>&nbsp;</i>}</Typography>
+                                    component="span">{'.'}</Typography>
+                            default :
+                                return <Typography
+                                    sx={(theme) => ({
+                                        display: 'inline-block',
+                                        height: 'max-content',
+                                        width: 'max-content',
+                                        lineHeight: 1.5,
+                                        padding : '1px',
+                                        marringBottom : '4px',
+                                        justifyContent: "center",
+                                        alignItems: "center",
+                                        textAlign: 'center',
+                                        fontFamily: 'Fira Mono',
+                                        backgroundColor: matchedIndices.includes(_) ? 'rgba(161, 245, 196, 0.5)' : 'transparent'
+                                    })}
+                                    component="span">{c}</Typography>
                         }
                     })}
 

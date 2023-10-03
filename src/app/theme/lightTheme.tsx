@@ -338,8 +338,8 @@ const LightTheme = createTheme({
         "contrastThreshold": 3,
         "tonalOffset": 0.2,
         "background": {
-            "paper": "#fafafa",
-            "default": "#fff"
+            "paper": "#f8f8f8",
+            "default": "#e8e8e8"
         },
         "action": {
             "active": "rgba(0, 0, 0, 0.54)",

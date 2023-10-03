@@ -41,6 +41,9 @@ export function ColorVariantVertical(props: ColorVariantProps) {
                                 background: colorString,
                                 width: props.width,
                                 height:"9%",
+                                '&:hover' : {
+                                    border : "1px solid #fefefe"
+                                }
                             })}
                         ></Box>
                     );

@@ -52,6 +52,9 @@ export function ColorVariant(props: ColorVariantProps) {
                                     copy(tinycolor(colorString).toHexString())
                                 }}
                                 sx={(theme) => ({
+                                    '&:hover' : {
+                                        border : "1px solid #fefefe"
+                                    },
                                     boxSizing: "border-box",
                                     border: value === 0 ? "2px solid white" : "none",
                                     background: colorString,

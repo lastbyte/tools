@@ -1,5 +1,5 @@
 import {AddOutlined, Colorize, ContentCopyRounded, Google, MoreVert, Settings} from "@mui/icons-material";
-import {CardHeader, Chip, Grid, IconButton} from "@mui/material";
+import {CardHeader, Chip, Divider, Grid, IconButton} from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -70,7 +70,6 @@ export default function ColorWidget() {
                             </Button>
                         </Grid>
                     </Grid>
-
                     <Grid
                         container
                         flexWrap="wrap"
@@ -114,6 +113,7 @@ export default function ColorWidget() {
                         />
                     </Grid>
                 </Grid>
+                <Divider orientation="vertical"/>
                 <Grid container
                       sx={(theme) => ({
                           gap: theme.spacing(2),
@@ -123,7 +123,7 @@ export default function ColorWidget() {
                           flexWrap: "nowrap"
                       })}
                 >
-                    <Typography variant="button" sx={(theme) => ({position: "sticky"})}>
+                    <Typography variant="h6" sx={(theme) => ({position: "sticky"})}>
                         PALLETE
                     </Typography>
                     {colorPallete.map((color,index) => (
