@@ -13,6 +13,7 @@ import RegexMatcherWidget from "@components/regexMatcherWidget";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsDrawerOpen} from "@redux/reducers/drawerReducer";
 import HashGeneratorWidget from "@components/hashGeneratorWidget";
+import SearchAppBar from "@components/appBar";
 
 interface HomeProps {
 
@@ -23,52 +24,39 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
     const dispatch = useDispatch();
     const isDrawerOpen = useSelector((state: any) => state.drawer.isOpen);
 
-    const toggleDrawer =
-        (open: boolean) =>
-            (event: React.KeyboardEvent | React.MouseEvent) => {
-                if (
-                    event &&
-                    event.type === 'keydown' &&
-                    ((event as React.KeyboardEvent).key === 'Tab' ||
-                        (event as React.KeyboardEvent).key === 'Shift')
-                ) {
-                    return;
-                }
-                dispatch(setIsDrawerOpen(open));
-            };
     return <>
         <Grid container sx={(theme) => ({
-            gap: theme.spacing(3),
             boxSizing: 'border-box',
             background: theme.palette.background.default,
             flexDirection: 'column',
             height: '100%',
             width: "100%",
-            flexWrap: 'nowrap'
         })}>
-            <Grid container width="100%" sx={(theme) => ({
-                justifyContent: 'center',
-                alignItems: "center",
-                gap: theme.spacing(2),
-                background: theme.palette.background.paper,
-                padding: theme.spacing(2, 2),
-                width: "100%",
-                height: "fit-content",
-                boxShadow: theme.shadows[5]
-            })}>
-                <GlobalSearchBar/>
+            {/*<Grid container width="100%" sx={(theme) => ({*/}
+            {/*    justifyContent: 'center',*/}
+            {/*    alignItems: "center",*/}
+            {/*    gap: theme.spacing(2),*/}
+            {/*    background: theme.palette.background.paper,*/}
+            {/*    padding: theme.spacing(2, 2),*/}
+            {/*    width: "100%",*/}
+            {/*    height: "fit-content",*/}
+            {/*    boxShadow: theme.shadows[1]*/}
+            {/*})}>*/}
+            {/*    <GlobalSearchBar/>*/}
 
-            </Grid>
-            <Grid spacing={4} container sx={(theme) => ({
+            {/*</Grid>*/}
+            <SearchAppBar/>
+            <Grid spacing={2} container sx={(theme) => ({
                 background: theme.palette.background.default,
-                padding: theme.spacing(2),
+                padding: theme.spacing(0,2),
+                marginTop: theme.spacing(2),
                 flex: 1,
                 justifyContent: "flex-start",
                 flexWrap: 'wrap',
                 boxSizing: "border-box"
             })} className="App">
 
-                <Widget item xs={12} sm={12} md={12} lg={6} xl={6} title="Color Picker" icon={ColorPickerIcon}
+                <Widget item xs={12} sm={12} md={6} lg={6} xl={6} title="Color Picker" icon={ColorPickerIcon}
                         component={ColorWidget} height={600}/>
 
                 <Widget item xs={12} sm={12} md={6} lg={6} xl={6} title="Google Fonts" icon={FontIcon}

@@ -42,7 +42,7 @@ const MarkdownEditorWidget : React.FC<any> = () => {
             })
             setEditor(newEditor);
         }
-    },[])
+    },[]);
 
     useEffect(() => {
         if (editor && markdownRef?.current) {
@@ -50,17 +50,21 @@ const MarkdownEditorWidget : React.FC<any> = () => {
             const newEditor = new Editor({
                 el: markdownRef.current,
                 height: '600px',
-                initialEditType: 'markdown',
+                initialEditType: window.innerWidth >1000 ?  'markdown' : 'wysiwyg',
                 previewStyle: 'vertical',
                 initialValue : editorText,
                 theme : theme,
                 plugins : [umlPlugin, tableMergedCellPlugin, codeSyntaxHighlightPlugin, chartPlugin,colorPlugin ]
             });
 
+            window.onresize = () => {
+                if (window.innerWidth >1000){ editor.setMode('markdown'); setEditor(editor);}
+                else {editor.setMode('wysiwyg');setEditor(editor);}
+            }
+
             newEditor.on("change", () => {
                 setEditorText(newEditor.getEditorElements().mdEditor.innerText);
             })
-
             setEditor(newEditor);
 
         }

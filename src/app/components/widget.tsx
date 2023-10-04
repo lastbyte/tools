@@ -44,8 +44,8 @@ const Widget: React.FC<WidgetProps> = (props: WidgetProps) => {
             background: theme.palette.background.paper,
             boxSizing: "border-box",
             overflow: "scroll",
-            height: isFullScreen ? "100vh" : props.height ? props.height : 'auto',
-            width: isFullScreen ? "100vw" : props.width ? props.width : 'auto',
+            height: isFullScreen ? "100%" : props.height ? props.height : 'auto',
+            width: isFullScreen ? "100%" : props.width ? props.width : 'auto',
             minHeight: props.minHeight ? props.minHeight : 'auto',
             minWidth: props.minWidth ? props.minWidth : 'auto',
             ...props.style

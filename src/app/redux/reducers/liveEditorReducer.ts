@@ -6,9 +6,10 @@ export const liveEditorSlice = createSlice({
     name: 'liveEditor',
     initialState : {
         activeTab : 1,
-        htmlContent : '<h1>This is a live editor</h1>',
+        htmlContent : '<h1>This is a live editor</h1>\n' +
+            '<button id="btn">click me </button>',
         cssContent : 'h1 { color : greenyellow}',
-        jsContent : 'document.write("written from javascript")',
+        jsContent : 'document.getElementById("btn").addEventListener("click", () => { alert("clicked")})',
     },
     reducers: {
         setActiveTab: (state,action) => {

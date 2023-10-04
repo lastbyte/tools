@@ -1,14 +1,16 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Paper from "@mui/material/Paper";
-import {ArrowDropDownCircle} from "@mui/icons-material";
+import {ArrowDropDownCircle, FileOpen} from "@mui/icons-material";
 import {hashAlgorithms} from "@common/constants";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import {setHashAlgorithm, setInput, setOutput} from "@redux/reducers/hashGeneratorReducer";
 //@ts-ignore
 import Hashes from 'jshashes';
+import Typography from "@mui/material/Typography";
+import {styled} from "@mui/material/styles";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -20,6 +22,18 @@ const MenuProps = {
         },
     },
 };
+
+const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+});
 const HashGeneratorWidget: React.FC<any> = () => {
 
     const dispatch = useDispatch();
@@ -33,32 +47,39 @@ const HashGeneratorWidget: React.FC<any> = () => {
     const SHA512 = new Hashes.SHA512;
     const RMD160 = new Hashes.RMD160;
 
-    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-        console.log({val : e.target.value});
-        if (e.target.value == "") {
-            dispatch(setInput(e.target.value));
+    useEffect(() => {
+        if (input=='') {
             dispatch(setOutput(''));
-            return;
+            return
         }
-        dispatch(setInput(e.target.value));
         switch (hashAlgorithm) {
             case 'sha1' :
-                dispatch(setOutput(SHA1.hex(e.target.value)));
+                dispatch(setOutput(SHA1.hex(input)));
                 break;
             case 'sha256' :
-                dispatch(setOutput(SHA256.hex(e.target.value)));
+                dispatch(setOutput(SHA256.hex(input)));
                 break;
             case 'sha512' :
-                dispatch(setOutput(SHA512.hex(e.target.value)));
+                dispatch(setOutput(SHA512.hex(input)));
                 break;
             case 'md5' :
-                dispatch(setOutput(MD5.hex(e.target.value)));
+                dispatch(setOutput(MD5.hex(input)));
                 break;
             case 'rmd160' :
-                dispatch(setOutput(RMD160.hex(e.target.value)));
+                dispatch(setOutput(RMD160.hex(input)));
                 break;
         }
+    },[hashAlgorithm, input])
+    function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+        dispatch(setInput(e.target.value));
+    }
 
+    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const reader = new FileReader();
+        reader.addEventListener('load', (event) => {
+            dispatch(setInput(event?.target?.result));
+        });
+        if (e.target?.files) reader.readAsText(e.target.files[0]);
     }
 
     return (<>
@@ -115,7 +136,7 @@ const HashGeneratorWidget: React.FC<any> = () => {
                         )}
                     </Select>
                 </FormControl>
-                <Button variant="contained">Import from file</Button>
+                <Button component="label" variant="contained" startIcon={<FileOpen />} size="small" ><Typography variant="body2"><VisuallyHiddenInput type="file" onChange={handleFileChange}/>Import from file</Typography></Button>
             </Paper>
             <Paper elevation={0}
                    sx={(theme) => ({
