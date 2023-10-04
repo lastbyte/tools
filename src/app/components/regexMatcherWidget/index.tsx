@@ -79,10 +79,7 @@ const RegexMatcherWidget: React.FC<any> = () => {
             <Paper variant="outlined"
                    sx={(theme) => ({
                        position: "sticky",
-                       padding: "4px 16px",
                        boxSizing: 'border-box',
-                       display: "flex",
-                       alignItems: "center",
                        width: "100%",
                        flex: 1,
                    })}>
