@@ -11,7 +11,7 @@ interface GoogleFontCardProps {
 
 export function GoogleFontCard(props: GoogleFontCardProps) {
 
-    const [preview, setPreview] = useState(false);
+    const [preview, setPreview] = useState(true);
 
     const text = (type: "LINK" | "IMPORT") =>
         type === "LINK"
@@ -21,7 +21,7 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
             : `@import url('https://fonts.googleapis.com/css2?family=${encodeURI(props?.font?.family)}&display=swap');`;
 
     return (
-        <Card variant="outlined">
+        <Card variant="outlined" sx={(theme) => ({width : '300px'})}>
             <CardHeader sx={(theme) => ({padding: theme.spacing(1, 2)})} titleTypographyProps={{variant: "body1"}}
                         title={props.font.family} action={
                 <IconButton aria-label="settings">

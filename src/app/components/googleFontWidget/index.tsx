@@ -55,15 +55,16 @@ export default function GoogleFontWidget() {
                 >
                     <Grid
                         container
-                        flexDirection="column"
-                        flexWrap="nowrap"
+                        flexDirection="row"
+                        flexWrap="wrap"
+                        justifyContent="space-evenly"
                         sx={(theme) => ({
                             gap: theme.spacing(1),
                         })}
                     >
-                        {fontList.map((font) => {
+                        {fontList.filter((a,i) => i<20).map((font) => {
                             return (
-                                <GoogleFontCard font={font}/>
+                                <GoogleFontCard key={font.family} font={font}/>
                             );
                         })}
                     </Grid>

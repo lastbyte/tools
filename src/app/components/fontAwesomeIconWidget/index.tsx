@@ -54,9 +54,9 @@ export default function FontAwesomeIconWidget() {
                         gap: theme.spacing(1),
                     })}
                 >
-                    {iconList.map((font) => {
+                    {iconList.filter((a,i) => i<20).map((font) => {
                         return (
-                            <GoogleFontCard font={font}/>
+                            <GoogleFontCard key={font} font={font}/>
                         );
                     })}
                 </Grid>

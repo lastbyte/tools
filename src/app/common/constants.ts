@@ -14,3 +14,12 @@ export const languages: {[key in string] : {value : string, display : string}} =
     html : {value : 'html', display :"HTML"},
     cplusplus: {value : 'cpp', display :"C++"},
 }
+
+
+export const hashAlgorithms: {[key in string] : {value : string, display : string}} =  {
+    sha1:{value : 'sha1', display :"SHA 1"},
+    sha256:{value : 'sha256', display :"SHA 256"},
+    sha512:{value : 'sha512', display :"SHA 512"},
+    md5:{value : 'md5', display :"MD5"},
+    rmd160 : {value : 'rmd160', display : 'RMD160'}
+}

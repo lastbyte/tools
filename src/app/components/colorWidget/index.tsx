@@ -26,7 +26,7 @@ export default function ColorWidget() {
                 sx={{
                     display: "flex",
                     gap: "10px",
-                    height: "calc(100% - 58px)",
+                    height: "fit-content",
                     flexDirection: "row",
                     boxSizing: "border-box",
                 }}
@@ -38,7 +38,7 @@ export default function ColorWidget() {
                     boxSizing: "border-box",
                 }}>
                     <Grid container flexDirection={"row"} flexWrap={"nowrap"} gap={8} sx={{ marginLeft : 0}}>
-                        <Grid container sx={(theme) => ({flex : 1, boxSizing : 'border-box'})}>
+                        <Grid container sx={(theme) => ({flex : 1, boxSizing : 'border-box', maxWidth: "400px"})}>
                         <SketchPicker
                             width="auto"
                             disableAlpha={false}
@@ -78,39 +78,20 @@ export default function ColorWidget() {
                         width="auto"
                         sx={(theme) => ({gap: theme.spacing(1)})}
                     >
-                        <Chip
-                            sx={{ flex: "1"}}
-                            label={tinycolor(selectedColor).toHexString()}
-                            onClick={() => {
-                                copy(tinycolor(selectedColor).toHexString())
-                            }}
-                            onDelete={() => {
-                                copy(tinycolor(selectedColor).toHexString())
-                            }}
-                            deleteIcon={<ContentCopyRounded/>}
-                        />
-                        <Chip
-                            sx={{flex: "1"}}
-                            label={tinycolor(selectedColor).toRgbString()}
-                            onClick={() => {
-                                copy(tinycolor(selectedColor).toRgbString())
-                            }}
-                            onDelete={() => {
-                                copy(tinycolor(selectedColor).toRgbString())
-                            }}
-                            deleteIcon={<ContentCopyRounded/>}
-                        />
-                        <Chip
-                            sx={{ flex: "1"}}
-                            label={tinycolor(selectedColor).toHslString()}
-                            onClick={() => {
-                                copy(tinycolor(selectedColor).toHslString());
-                            }}
-                            onDelete={() => {
-                                copy(tinycolor(selectedColor).toHslString());
-                            }}
-                            deleteIcon={<ContentCopyRounded/>}
-                        />
+                        {[tinycolor(selectedColor).toHexString(),tinycolor(selectedColor).toRgbString(),tinycolor(selectedColor).toHslString()].map((color) => {
+                          return   <Chip
+                              key={color}
+                              sx={(theme) => ({flex: "1",padding : theme.spacing(1)})}
+                              label={<Typography variant="body1">{color}</Typography>}
+                              onClick={() => {
+                                  copy(color)
+                              }}
+                              onDelete={() => {
+                                  copy(color)
+                              }}
+                              deleteIcon={<ContentCopyRounded/>}
+                          />;
+                        })}
                     </Grid>
                 </Grid>
                 <Divider orientation="vertical"/>

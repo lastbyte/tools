@@ -26,10 +26,4 @@ export function searchFonts(keyword? : string) {
     const fuse = new Fuse(fonts.items,fuseOptions);
     return keyword ? fuse.search(keyword).map(o => o.item) : fonts.items;
 
-    return fonts.items;
-
-}
-
-export function getPackage() {
-
 }
