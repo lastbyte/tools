@@ -62,7 +62,7 @@ export default function ColorWidget() {
                             />
                             <Button
                                 variant={"contained"}
-                                sx={{ display : {sm : 'none', md : 'flex'}, minWidth : "50px",fontSize:"24px", height: "32px", width: "50px", boxSizing : 'border-box'}}
+                                sx={{ display : {sm : 'none !important', md : 'flex'}, minWidth : "50px",fontSize:"24px", height: "32px", width: "50px", boxSizing : 'border-box'}}
                                 onClick={() => {
                                     const newPallete = [...colorPallete];
                                     newPallete.push(selectedColor);
