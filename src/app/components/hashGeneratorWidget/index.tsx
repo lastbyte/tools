@@ -87,7 +87,6 @@ const HashGeneratorWidget: React.FC<any> = () => {
 
     return (<>
         <CardContent sx={(theme) => ({
-            fontFamily: "Fira Mono",
             flexDirection: 'column',
             display: "flex",
             flex: 1,
@@ -103,7 +102,6 @@ const HashGeneratorWidget: React.FC<any> = () => {
                        alignItems: "center",
                        justifyContent: 'space-between',
                        width: "100%",
-                       fontFamily: "Fira Mono"
                    })}
             >
                 <FormControl sx={(theme) => ({display : "flex"})}>
@@ -111,7 +109,7 @@ const HashGeneratorWidget: React.FC<any> = () => {
                     <Select
                         id={"hash-selector"}
                         size="small"
-                        sx={{width: matches ?  "150px" : "200px", flex: 1}}
+                        sx={{width: matches ?  "150px" : "200px", flex: 1,fontFamily: "Fira Mono",}}
                         displayEmpty
                         value={hashAlgorithm}
                         onChange={(e) => {
@@ -139,7 +137,7 @@ const HashGeneratorWidget: React.FC<any> = () => {
                         )}
                     </Select>
                 </FormControl>
-                <Button component="label" variant="contained" sx={(theme) => ({ height : theme.spacing(5)})} startIcon={<FileOpen />} size="small" ><Typography variant="subtitle2"><VisuallyHiddenInput type="file" onChange={handleFileChange}/>Import File</Typography></Button>
+                <Button component="label" variant="contained" sx={(theme) => ({ height : theme.spacing(5)})} startIcon={<FileOpen />} size="small" ><VisuallyHiddenInput type="file" onChange={handleFileChange}/><Typography variant="subtitle2">Import File</Typography></Button>
             </Paper>
             <Paper elevation={0}
                    sx={(theme) => ({
