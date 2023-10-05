@@ -1,5 +1,5 @@
 import {AddOutlined, Colorize, ContentCopyRounded, Google, MoreVert, Settings} from "@mui/icons-material";
-import {CardHeader, Chip, Divider, Grid, IconButton} from "@mui/material";
+import {CardHeader, Chip, Divider, Grid, IconButton, useMediaQuery, useTheme} from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -13,11 +13,14 @@ import copy from "copy-to-clipboard";
 import {ColorVariantVertical} from "@components/colorWidget/colorVariantVertical";
 import {setIsNotificationIsOpen, setMessage} from "@redux/reducers/noitificationReducer";
 import {useDispatch} from "react-redux";
+import useWindowResize from "@app/hooks/windowResizeHook";
 
 export default function ColorWidget() {
     const [selectedColor, setSelectedColor] = React.useState("#1b5");
     const [colorPallete, setColorPallete] = React.useState(["#1b5"]);
     const dispatch = useDispatch();
+
+    const [width, height] = useWindowResize();
 
     function removeFromPallete(index : number) {
         console.log("Removing color ", colorPallete, index);
@@ -116,7 +119,7 @@ export default function ColorWidget() {
                           width: "100%",
                           overflow: 'scroll',
                           flexWrap: "nowrap",
-                          display : {sm : 'none', md : 'flex'}
+                          display : width < 500 ? 'none' : 'flex'
                       })}
                 >
                     <Typography variant="h6" sx={(theme) => ({position: "sticky"})}>
