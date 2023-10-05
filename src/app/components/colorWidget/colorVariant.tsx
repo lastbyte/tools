@@ -50,7 +50,7 @@ export function ColorVariant(props: ColorVariantProps) {
                                 : tinycolor(props.color).darken(value).toRgbString();
                         return (
                             <Box
-                                key={value}
+                                key={value+''}
                                 onClick={() => {
                                     props.setColor && props.setColor(colorString);
                                     copy(tinycolor(colorString).toHexString());

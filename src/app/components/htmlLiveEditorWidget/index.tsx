@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import {Grid, Tab, Tabs} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import 'highlight.js/styles/github-dark.css';
@@ -18,7 +18,7 @@ const MenuProps = {
     },
 };
 
-const LiveEditorWidget: React.FC<any> = () => {
+const HtmlLiveEditorWidget: React.FC<any> = () => {
 
     const editorRef = useRef(null);
     const activeTab = useSelector((state: any) => state.liveEditor.activeTab);
@@ -26,7 +26,6 @@ const LiveEditorWidget: React.FC<any> = () => {
     const css = useSelector((state: any) => state.liveEditor.cssContent);
     const js = useSelector((state: any) => state.liveEditor.jsContent);
     const dispatch = useDispatch();
-    const [codeEditor, setCodeEditor] = useState<any>();
 
     const [width, height] = useWindowResize();
 
@@ -35,7 +34,6 @@ const LiveEditorWidget: React.FC<any> = () => {
             const codeEditor = new CodeFlask(editorRef.current, {language: 'html', lineNumbers: true, defaultTheme : true });
             codeEditor.updateCode(html);
             codeEditor.onUpdate( () => {dispatch(setHtmlContent(codeEditor.getCode()))})
-            setCodeEditor(codeEditor)
         }
     }, [])
 
@@ -46,7 +44,6 @@ const LiveEditorWidget: React.FC<any> = () => {
                     const codeEditor = new CodeFlask(editorRef.current, {language: 'html', lineNumbers: true});
                     codeEditor.updateCode(html);
                     codeEditor.onUpdate( () => {dispatch(setHtmlContent(codeEditor.getCode()))})
-                    setCodeEditor(codeEditor)
                 }
                 break;
             case 1 :
@@ -54,7 +51,6 @@ const LiveEditorWidget: React.FC<any> = () => {
                     const codeEditor = new CodeFlask(editorRef.current, {language: 'css', lineNumbers: true});
                     codeEditor.updateCode(css);
                     codeEditor.onUpdate( () => {dispatch(setCssContent(codeEditor.getCode()))})
-                    setCodeEditor(codeEditor)
                 }
                 break;
             case 2 :
@@ -62,7 +58,6 @@ const LiveEditorWidget: React.FC<any> = () => {
                     const codeEditor = new CodeFlask(editorRef.current, {language: 'js', lineNumbers: true});
                     codeEditor.updateCode(js);
                     codeEditor.onUpdate( () => {dispatch(setJsContent(codeEditor.getCode()))})
-                    setCodeEditor(codeEditor)
                 }
                 break;
         }
@@ -122,4 +117,4 @@ const LiveEditorWidget: React.FC<any> = () => {
     </>);
 }
 
-export default LiveEditorWidget;
+export default HtmlLiveEditorWidget;

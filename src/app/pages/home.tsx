@@ -4,17 +4,16 @@ import ColorWidget from "@components/colorWidget";
 import GoogleFontWidget from "@components/googleFontWidget";
 import {Drawer, Grid} from "@mui/material";
 import Widget from "@components/widget";
-import GlobalSearchBar from "@components/globalSearchBar";
-import ThemeToggleButton from "@components/themeToggleButton";
 import MarkdownEditorWidget from "@components/markdownEditorWidget";
-import LiveEditorWidget from "@components/liveEditorWidget";
+import HtmlLiveEditorWidget from "@components/htmlLiveEditorWidget";
 import {
     CodeIcon,
     ColorPickerIcon,
     FileCodeIcon,
     FontIcon,
     GithubIcon,
-    HashTag, LinkedInIcon,
+    HashTag,
+    LinkedInIcon,
     MarkDownIcon
 } from "@app/utility/faUtility";
 import RegexMatcherWidget from "@components/regexMatcherWidget";
@@ -40,7 +39,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
             boxSizing: 'border-box',
             background: theme.palette.background.default,
             flexDirection: 'column',
-            height: '100%',
+            minHeight: '100%',
             width: "100%",
         })}>
             {/*<Grid container width="100%" sx={(theme) => ({*/}
@@ -85,7 +84,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
                 <Widget item xs={12} sm={12} md={12} lg={12} xl={12} title="Markdown editor" icon={MarkDownIcon}
                         component={MarkdownEditorWidget} height="auto"/>
                 <Widget item xs={12} sm={12} md={12} lg={12} xl={12} title="Live editor" icon={FileCodeIcon}
-                        component={LiveEditorWidget} height="760"/>
+                        component={HtmlLiveEditorWidget} height="760"/>
             </Grid>
         </Grid>
         <Drawer
