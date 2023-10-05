@@ -74,14 +74,13 @@ export default function SearchAppBar() {
                 >
                     <MenuIcon/>
                 </IconButton>
-                {/*<Typography*/}
-                {/*    variant="h6"*/}
-                {/*    noWrap*/}
-                {/*    component="div"*/}
-                {/*    sx={{flexGrow: 1}}*/}
-                {/*>*/}
-                {/*    ToolBox*/}
-                {/*</Typography>*/}
+                <Typography
+                    variant="h6"
+                    noWrap
+                    component="div"
+                    sx={{flexGrow: 1}}
+                >
+                </Typography>
                 {/*<Search>*/}
                 {/*    <SearchIconWrapper>*/}
                 {/*        <SearchIcon/>*/}
