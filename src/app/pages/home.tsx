@@ -8,12 +8,22 @@ import GlobalSearchBar from "@components/globalSearchBar";
 import ThemeToggleButton from "@components/themeToggleButton";
 import MarkdownEditorWidget from "@components/markdownEditorWidget";
 import LiveEditorWidget from "@components/liveEditorWidget";
-import {CodeIcon, ColorPickerIcon, FileCodeIcon, FontIcon, HashTag, MarkDownIcon} from "@app/utility/faUtility";
+import {
+    CodeIcon,
+    ColorPickerIcon,
+    FileCodeIcon,
+    FontIcon,
+    GithubIcon,
+    HashTag, LinkedInIcon,
+    MarkDownIcon
+} from "@app/utility/faUtility";
 import RegexMatcherWidget from "@components/regexMatcherWidget";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsDrawerOpen} from "@redux/reducers/drawerReducer";
 import HashGeneratorWidget from "@components/hashGeneratorWidget";
 import SearchAppBar from "@components/appBar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
 
 interface HomeProps {
 
@@ -82,20 +92,35 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
                 boxShadow: theme.shadows[3],
                 boxSizing: 'border-box',
                 '& .MuiDrawer-paperAnchorLeft': {
-                    width: 'fit-content',
                     padding: theme.spacing(2),
                     boxSizing: 'border-box'
                 }
             })}
-            anchor={'left'}
+            anchor={'bottom'}
             open={isDrawerOpen}
             onClose={() => dispatch(setIsDrawerOpen(false))}
             transitionDuration={250}
         >
             <Grid container sx={(theme) => ({
-                justifyContent: 'center', padding: theme.spacing(2, 1), boxSizing: 'border-box'
+                justifyContent: 'center',alignItems: 'center', gap: theme.spacing(2, ), padding: theme.spacing(2, 2), boxSizing: 'border-box'
             })}>
-                <ThemeToggleButton/>
+                <Grid flexDirection="column" alignItems="center" container flex="1" gap="8px" justifyContent="center">
+                    <Typography variant="body2" component="div">
+                        Welcome to a developer's best friend! Packed with essential tools like a color picker, hash generator, markdown and HTML editors, regex matcher, and a font library, we're here to simplify your daily tasks and empower your coding journey. Say goodbye to time-consuming searches and hello to streamlined development – welcome to your new coding haven!
+                    </Typography>
+                    <Typography variant="body1" color={"primary"}>
+                        Connect with me
+                    </Typography>
+                    <Grid container width="fit-content" sx={(theme) => ({
+                        padding: theme.spacing(1),
+                    })}>
+                        <IconButton
+                            onClick={() => window.open('https://github.com/lastbyte/', '_blank')}><GithubIcon/></IconButton>
+                        <IconButton
+                            sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
+                            onClick={() => window.open('https://www.linkedin.com/in/lastbyte/', '_blank')}><LinkedInIcon/></IconButton>
+                    </Grid>
+                </Grid>
             </Grid>
         </Drawer>
     </>;

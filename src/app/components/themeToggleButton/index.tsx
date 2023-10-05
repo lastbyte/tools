@@ -15,20 +15,20 @@ const ThemeToggleButton: React.FC<any> = () => {
         color="primary"
         exclusive
         aria-label="Platform"
-        sx={(theme) =>({background : theme.palette.background.default})}
+        sx={(theme) =>({background : theme.palette.background.default, height : theme.spacing(4.5)})}
     >
-        <ToggleButton selected={selectedTheme === THEME.light} onClick={() => {
+        <ToggleButton size="small" selected={selectedTheme === THEME.light} onClick={() => {
             dispatch(setTheme(THEME.light))
         }} value="light" sx={(theme) => ({display: 'flex', alignItems: "center", gap: theme.spacing(1)})}><LightMode/>
             <Typography variant="button">Light</Typography></ToggleButton>
-        <ToggleButton selected={selectedTheme === THEME.dark} onClick={() => {
+        <ToggleButton size="small" selected={selectedTheme === THEME.dark} onClick={() => {
             dispatch(setTheme(THEME.dark))
         }} value="dark" sx={(theme) => ({
             display: 'flex',
             alignItems: "center",
             gap: theme.spacing(1)
         })}><DarkMode/><Typography variant="button">Dark</Typography></ToggleButton>
-        <ToggleButton selected={selectedTheme === THEME.system} onClick={() => {
+        <ToggleButton size="small" selected={selectedTheme === THEME.system} onClick={() => {
             dispatch(setTheme(THEME.system))
         }} value="system" sx={(theme) => ({
             display: 'flex',

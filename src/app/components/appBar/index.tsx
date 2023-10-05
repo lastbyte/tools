@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsDrawerOpen} from "@redux/reducers/drawerReducer";
 import {Grid} from "@mui/material";
 import {GithubIcon, LinkedInIcon} from "@app/utility/faUtility";
+import ThemeToggleButton from "@components/themeToggleButton";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -77,7 +78,7 @@ export default function SearchAppBar() {
                     variant="h6"
                     noWrap
                     component="div"
-                    sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
+                    sx={{flexGrow: 1}}
                 >
                     ToolBox
                 </Typography>
@@ -90,16 +91,7 @@ export default function SearchAppBar() {
                 {/*        inputProps={{'aria-label': 'search'}}*/}
                 {/*    />*/}
                 {/*</Search>*/}
-                <Grid container width="fit-content" sx={(theme) => ({
-                    padding: theme.spacing(1),
-                    paddingLeft: theme.spacing(2),
-                })}>
-                    <IconButton
-                        onClick={() => window.open('https://github.com/lastbyte/tools', '_blank')}><GithubIcon/></IconButton>
-                    <IconButton
-                        sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
-                        onClick={() => window.open('https://www.linkedin.com/in/lastbyte/', '_blank')}><LinkedInIcon/></IconButton>
-                </Grid>
+                <ThemeToggleButton/>
             </Toolbar>
         </AppBar>
     );
