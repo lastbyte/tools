@@ -115,9 +115,10 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
                         padding: theme.spacing(1),
                     })}>
                         <IconButton
+                            color="primary"
                             onClick={() => window.open('https://github.com/lastbyte/', '_blank')}><GithubIcon/></IconButton>
                         <IconButton
-                            sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
+                            color="primary"
                             onClick={() => window.open('https://www.linkedin.com/in/lastbyte/', '_blank')}><LinkedInIcon/></IconButton>
                     </Grid>
                 </Grid>
