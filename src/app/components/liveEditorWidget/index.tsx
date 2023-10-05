@@ -5,6 +5,7 @@ import 'highlight.js/styles/github-dark.css';
 import {useDispatch, useSelector} from "react-redux";
 import {setActiveTab, setCssContent, setHtmlContent, setJsContent} from "@redux/reducers/liveEditorReducer";
 import CodeFlask from 'codeflask';
+import useWindowResize from "@app/hooks/windowResizeHook";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -26,6 +27,8 @@ const LiveEditorWidget: React.FC<any> = () => {
     const js = useSelector((state: any) => state.liveEditor.jsContent);
     const dispatch = useDispatch();
     const [codeEditor, setCodeEditor] = useState<any>();
+
+    const [width, height] = useWindowResize();
 
     useEffect(() => {
         if (editorRef.current) {
@@ -66,8 +69,8 @@ const LiveEditorWidget: React.FC<any> = () => {
     }, [activeTab])
 
     return (<>
-        <CardContent sx={(theme) => ({display: 'flex', flex: 1, boxSizing: 'border-box', gap: theme.spacing(1)})}>
-            <Grid item xs={6} sx={(theme) => ({
+        <CardContent sx={(theme) => ({display: 'flex', flexDirection : width < 1000 ? 'column' : "row",width : width < 1000 ? '100%' : "row", flex: 1, boxSizing: 'border-box', gap: theme.spacing(1)})}>
+            <Grid item xs={width < 1000 ? 12 : 6} sx={(theme) => ({
                 display: 'flex',
                 flexDirection: 'column',
                 boxSizing: 'border-box',
@@ -98,10 +101,9 @@ const LiveEditorWidget: React.FC<any> = () => {
                 })} ref={editorRef}>
                 </Grid>
             </Grid>
-            <Grid item xs={6} sx={(theme) => ({
+            <Grid item xs={width < 1000 ? 12 : 6} sx={(theme) => ({
                 boxSizing: 'border-box',
                 height: "100%",
-                width: "50%",
                 position: 'relative',
                 padding: theme.spacing(1, 1),
                 fontSize: "12px"

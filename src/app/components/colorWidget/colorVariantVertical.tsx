@@ -4,6 +4,8 @@ import React from "react";
 import tinycolor from "tinycolor2";
 import Typography from "@mui/material/Typography";
 import copy from "copy-to-clipboard";
+import {setIsNotificationIsOpen, setMessage} from "@redux/reducers/noitificationReducer";
+import {useDispatch} from "react-redux";
 
 interface ColorVariantProps {
     color: string;
@@ -14,6 +16,8 @@ interface ColorVariantProps {
 }
 
 export function ColorVariantVertical(props: ColorVariantProps) {
+    const dispatch = useDispatch();
+
     return (
         <Grid container flexDirection="column" sx={{height : "calc(100% - 50px)", alignItems : "center"}} flexWrap="nowrap">
             <Grid
@@ -34,6 +38,8 @@ export function ColorVariantVertical(props: ColorVariantProps) {
                             onClick={() => {
                                 props.setColor && props.setColor(colorString);
                                 copy(tinycolor(colorString).toHexString())
+                                dispatch(setMessage(`color ${tinycolor(colorString).toHexString()} copied to clipboard`))
+                                dispatch(setIsNotificationIsOpen(true));
                             }}
                             sx={(theme) => ({
                                 boxSizing: "border-box",

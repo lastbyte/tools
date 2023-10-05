@@ -1,8 +1,9 @@
-import {ContentCopyRounded, CopyAll, OpenInNew} from "@mui/icons-material";
+import {ContentCopyRounded, OpenInNew} from "@mui/icons-material";
 import {Button, Card, CardActions, CardContent, CardHeader, Chip, Divider, Grid, IconButton} from "@mui/material";
 import React, {useState} from "react";
 import copy from "copy-to-clipboard";
-import tinycolor from "tinycolor2";
+import {setIsNotificationIsOpen, setMessage} from "@redux/reducers/noitificationReducer";
+import {useDispatch} from "react-redux";
 
 interface GoogleFontCardProps {
     font: any;
@@ -12,7 +13,7 @@ interface GoogleFontCardProps {
 export function GoogleFontCard(props: GoogleFontCardProps) {
 
     const [preview, setPreview] = useState(true);
-
+    const dispatch = useDispatch();
     const text = (type: "LINK" | "IMPORT") =>
         type === "LINK"
             ? `<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=${encodeURI(
@@ -21,7 +22,7 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
             : `@import url('https://fonts.googleapis.com/css2?family=${encodeURI(props?.font?.family)}&display=swap');`;
 
     return (
-        <Card variant="outlined" sx={(theme) => ({width : '300px'})}>
+        <Card variant="outlined" sx={(theme) => ({width: '300px'})}>
             <CardHeader sx={(theme) => ({padding: theme.spacing(1, 2)})} titleTypographyProps={{variant: "body1"}}
                         title={props.font.family} action={
                 <IconButton aria-label="settings">
@@ -55,7 +56,7 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
                     alignItems: "center",
                     width: "100%",
                     height: "120px"
-                })}><Button onClick={() => setPreview(true)} > Show preview </Button></Grid>}
+                })}><Button onClick={() => setPreview(true)}> Show preview </Button></Grid>}
 
                 <Divider/>
             </CardContent>
@@ -66,9 +67,13 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
                     label={"<link>"}
                     onClick={() => {
                         copy(text("LINK"))
+                        dispatch(setMessage(`code copied to clipboard`))
+                        dispatch(setIsNotificationIsOpen(true));
                     }}
                     onDelete={() => {
                         copy(text("LINK"))
+                        dispatch(setMessage(`code copied to clipboard`))
+                        dispatch(setIsNotificationIsOpen(true));
                     }}
                     deleteIcon={<ContentCopyRounded/>}
                 />
@@ -78,9 +83,13 @@ export function GoogleFontCard(props: GoogleFontCardProps) {
                     label={"@import"}
                     onClick={() => {
                         copy(text("IMPORT"))
+                        dispatch(setMessage(`code copied to clipboard`))
+                        dispatch(setIsNotificationIsOpen(true));
                     }}
                     onDelete={() => {
                         copy(text("IMPORT"))
+                        dispatch(setMessage(`code copied to clipboard`))
+                        dispatch(setIsNotificationIsOpen(true));
                     }}
                     deleteIcon={<ContentCopyRounded/>}
                 />

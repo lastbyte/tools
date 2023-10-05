@@ -24,6 +24,7 @@ import HashGeneratorWidget from "@components/hashGeneratorWidget";
 import SearchAppBar from "@components/appBar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
+import NotificationBar from "@app/utility/notifier";
 
 interface HomeProps {
 
@@ -124,6 +125,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
                 </Grid>
             </Grid>
         </Drawer>
+        <NotificationBar/>
     </>;
 }
 

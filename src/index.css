@@ -34,7 +34,3 @@ code {
     height: fit-content !important;
     display: block !important;
 }
-
-.toastui-editor-mode-switch{
-    display: none !important;
-}

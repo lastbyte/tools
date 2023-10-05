@@ -139,7 +139,7 @@ const HashGeneratorWidget: React.FC<any> = () => {
                         )}
                     </Select>
                 </FormControl>
-                <Button component="label" variant="contained" startIcon={<FileOpen />} size="small" ><Typography variant="subtitle2"><VisuallyHiddenInput type="file" onChange={handleFileChange}/>Import File</Typography></Button>
+                <Button component="label" variant="contained" sx={(theme) => ({ height : theme.spacing(5)})} startIcon={<FileOpen />} size="small" ><Typography variant="subtitle2"><VisuallyHiddenInput type="file" onChange={handleFileChange}/>Import File</Typography></Button>
             </Paper>
             <Paper elevation={0}
                    sx={(theme) => ({

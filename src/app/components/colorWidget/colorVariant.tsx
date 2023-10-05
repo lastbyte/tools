@@ -13,6 +13,8 @@ import {
     DeleteOutlineSharp,
     DeleteTwoTone
 } from "@mui/icons-material";
+import {setIsNotificationIsOpen, setMessage} from "@redux/reducers/noitificationReducer";
+import {useDispatch} from "react-redux";
 
 interface ColorVariantProps {
     color: string;
@@ -24,6 +26,8 @@ interface ColorVariantProps {
 }
 
 export function ColorVariant(props: ColorVariantProps) {
+
+    const dispatch = useDispatch();
     return (
         <Grid container flexDirection="column" gap="8px" width="100%" flexWrap="nowrap">
             <Typography>{tinycolor(props.color).toHexString()}</Typography>
@@ -49,8 +53,9 @@ export function ColorVariant(props: ColorVariantProps) {
                                 key={value}
                                 onClick={() => {
                                     props.setColor && props.setColor(colorString);
-                                    copy(tinycolor(colorString).toHexString())
-                                }}
+                                    copy(tinycolor(colorString).toHexString());
+                                    dispatch(setMessage(`color ${tinycolor(colorString).toHexString()} copied to clipboard`))
+                                    dispatch(setIsNotificationIsOpen(true));}}
                                 sx={(theme) => ({
                                     '&:hover' : {
                                         border : "1px solid #fefefe"

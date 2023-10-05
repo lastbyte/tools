@@ -38,11 +38,12 @@ const MarkdownEditorWidget : React.FC<any> = () => {
                 theme : theme,
                 plugins : [umlPlugin, tableMergedCellPlugin, codeSyntaxHighlightPlugin, chartPlugin,colorPlugin ]
             });
-
+            newEditor.blur();
             newEditor.on("change", () => {
                 setEditorText(newEditor.getMarkdown() || '');
             })
             setEditor(newEditor);
+            window.scroll({top : 0});
         }
     },[]);
 
@@ -53,11 +54,12 @@ const MarkdownEditorWidget : React.FC<any> = () => {
                 el: markdownRef.current,
                 height: '600px',
                 initialEditType: width > 1000 ?  'markdown' : 'wysiwyg',
-                previewStyle: 'vertical',
+                previewStyle:  width > 1000 ?  'vertical' : 'tab',
                 initialValue : editorText,
                 theme : theme,
                 plugins : [umlPlugin, tableMergedCellPlugin, codeSyntaxHighlightPlugin, chartPlugin,colorPlugin ]
             });
+
 
             newEditor.on("change", () => {
                 setEditorText(newEditor.getMarkdown() || '');

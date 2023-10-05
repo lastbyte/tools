@@ -11,10 +11,13 @@ import {ColorVariant} from "./colorVariant";
 import MenuIcon from "@mui/icons-material/Menu";
 import copy from "copy-to-clipboard";
 import {ColorVariantVertical} from "@components/colorWidget/colorVariantVertical";
+import {setIsNotificationIsOpen, setMessage} from "@redux/reducers/noitificationReducer";
+import {useDispatch} from "react-redux";
 
 export default function ColorWidget() {
     const [selectedColor, setSelectedColor] = React.useState("#1b5");
     const [colorPallete, setColorPallete] = React.useState(["#1b5"]);
+    const dispatch = useDispatch();
 
     function removeFromPallete(index : number) {
         console.log("Removing color ", colorPallete, index);
@@ -40,7 +43,7 @@ export default function ColorWidget() {
                     <Grid container flexDirection={"row"} flexWrap={"nowrap"} gap={8} sx={{ marginLeft : 0}}>
                         <Grid container sx={(theme) => ({flex : 1, boxSizing : 'border-box', maxWidth: "400px"})}>
                         <SketchPicker
-                            width="auto"
+                            width="260px"
                             disableAlpha={false}
                             color={selectedColor}
                             onChange={(e) => {
@@ -59,7 +62,7 @@ export default function ColorWidget() {
                             />
                             <Button
                                 variant={"contained"}
-                                sx={{minWidth : "50px",fontSize:"24px", height: "32px", width: "50px", boxSizing : 'border-box'}}
+                                sx={{ display : {sm : 'none', md : 'flex'}, minWidth : "50px",fontSize:"24px", height: "32px", width: "50px", boxSizing : 'border-box'}}
                                 onClick={() => {
                                     const newPallete = [...colorPallete];
                                     newPallete.push(selectedColor);
@@ -84,10 +87,21 @@ export default function ColorWidget() {
                               sx={(theme) => ({flex: "1",padding : theme.spacing(1)})}
                               label={<Typography variant="body1">{color}</Typography>}
                               onClick={() => {
-                                  copy(color)
+                                  try {
+                                      copy(color)
+                                      dispatch(setMessage(`color ${color} copied to clipboard`))
+                                      dispatch(setIsNotificationIsOpen(true));
+                                  }catch(e){}
                               }}
                               onDelete={() => {
-                                  copy(color)
+                                  try {
+                                      copy(color)
+                                      dispatch(setMessage(`color ${color} copied to clipboard`))
+                                      dispatch(setIsNotificationIsOpen(true));
+                                  }catch(e){
+
+                                  }
+
                               }}
                               deleteIcon={<ContentCopyRounded/>}
                           />;
@@ -101,7 +115,8 @@ export default function ColorWidget() {
                           flexDirection: "column",
                           width: "100%",
                           overflow: 'scroll',
-                          flexWrap: "nowrap"
+                          flexWrap: "nowrap",
+                          display : {sm : 'none', md : 'flex'}
                       })}
                 >
                     <Typography variant="h6" sx={(theme) => ({position: "sticky"})}>

@@ -3,7 +3,7 @@ import {hashAlgorithms} from "@common/constants";
 //@ts-ignore
 import Hashes from 'jshashes';
 export const hashGeneratorSlice = createSlice({
-    name: 'codeSnippet',
+    name: 'hashGenerator',
     initialState : {
         hashAlgorithm : hashAlgorithms['md5'].value,
         input : 'secret ',
