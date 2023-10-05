@@ -17,12 +17,14 @@ import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
 import "@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css";
 import {mdText} from "@components/markdownEditorWidget/markdownDefaultText";
+import useWindowResize from "@app/hooks/windowResizeHook";
 
 const MarkdownEditorWidget : React.FC<any> = () => {
 
     const theme = useSelector((state : any) => state.theme.value);
     const [editor, setEditor] = useState<any>(null);
     const [editorText, setEditorText] = useState(mdText);
+    const [width,height] = useWindowResize();
 
     const markdownRef = useRef(null);
     useEffect(() => {
@@ -30,7 +32,7 @@ const MarkdownEditorWidget : React.FC<any> = () => {
             const newEditor = new Editor({
                 el: markdownRef.current,
                 height: '600px',
-                initialEditType: 'markdown',
+                initialEditType: width > 1000 ? 'markdown' : 'wysiwyg',
                 previewStyle: 'vertical',
                 initialValue : editorText,
                 theme : theme,
@@ -38,7 +40,7 @@ const MarkdownEditorWidget : React.FC<any> = () => {
             });
 
             newEditor.on("change", () => {
-                setEditorText(newEditor.getEditorElements().mdEditor.innerText);
+                setEditorText(newEditor.getMarkdown() || '');
             })
             setEditor(newEditor);
         }
@@ -50,25 +52,20 @@ const MarkdownEditorWidget : React.FC<any> = () => {
             const newEditor = new Editor({
                 el: markdownRef.current,
                 height: '600px',
-                initialEditType: window.innerWidth >1000 ?  'markdown' : 'wysiwyg',
+                initialEditType: width > 1000 ?  'markdown' : 'wysiwyg',
                 previewStyle: 'vertical',
                 initialValue : editorText,
                 theme : theme,
                 plugins : [umlPlugin, tableMergedCellPlugin, codeSyntaxHighlightPlugin, chartPlugin,colorPlugin ]
             });
 
-            window.onresize = () => {
-                if (window.innerWidth >1000){ editor.setMode('markdown'); setEditor(editor);}
-                else {editor.setMode('wysiwyg');setEditor(editor);}
-            }
-
             newEditor.on("change", () => {
-                setEditorText(newEditor.getEditorElements().mdEditor.innerText);
+                setEditorText(newEditor.getMarkdown() || '');
             })
             setEditor(newEditor);
 
         }
-    },[theme])
+    },[theme,width]);
 
     return (<>
         <CardContent sx={(theme) => ({})}>

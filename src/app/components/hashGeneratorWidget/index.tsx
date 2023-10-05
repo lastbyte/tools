@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
-import {FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, OutlinedInput, Select, useMediaQuery, useTheme} from "@mui/material";
 import CardContent from "@mui/material/CardContent";
 import Paper from "@mui/material/Paper";
 import {ArrowDropDownCircle, FileOpen} from "@mui/icons-material";
@@ -35,6 +35,9 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 const HashGeneratorWidget: React.FC<any> = () => {
+
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('sm'));
 
     const dispatch = useDispatch();
     const hashAlgorithm = useSelector((state: any) => state.hashGenerator.hashAlgorithm)
@@ -103,12 +106,12 @@ const HashGeneratorWidget: React.FC<any> = () => {
                        fontFamily: "Fira Mono"
                    })}
             >
-                <FormControl>
+                <FormControl sx={(theme) => ({display : "flex"})}>
                     <InputLabel id="hash-selector">Hash Algorithm</InputLabel>
                     <Select
                         id={"hash-selector"}
                         size="small"
-                        sx={{width: "200px", flex: 1}}
+                        sx={{width: matches ?  "150px" : "200px", flex: 1}}
                         displayEmpty
                         value={hashAlgorithm}
                         onChange={(e) => {

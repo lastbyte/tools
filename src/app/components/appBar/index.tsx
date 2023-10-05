@@ -1,7 +1,6 @@
 import * as React from 'react';
-import {styled, alpha} from '@mui/material/styles';
+import {alpha, styled} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -10,8 +9,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import {useDispatch, useSelector} from "react-redux";
 import {setIsDrawerOpen} from "@redux/reducers/drawerReducer";
-import {GitHub, LinkedIn} from "@mui/icons-material";
 import {Grid} from "@mui/material";
+import {GithubIcon, LinkedInIcon} from "@app/utility/faUtility";
 
 const Search = styled('div')(({theme}) => ({
     position: 'relative',
@@ -82,24 +81,24 @@ export default function SearchAppBar() {
                 >
                     ToolBox
                 </Typography>
-                <Search>
-                    <SearchIconWrapper>
-                        <SearchIcon/>
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Search widgets"
-                        inputProps={{'aria-label': 'search'}}
-                    />
-                </Search>
+                {/*<Search>*/}
+                {/*    <SearchIconWrapper>*/}
+                {/*        <SearchIcon/>*/}
+                {/*    </SearchIconWrapper>*/}
+                {/*    <StyledInputBase*/}
+                {/*        placeholder="Search widgets"*/}
+                {/*        inputProps={{'aria-label': 'search'}}*/}
+                {/*    />*/}
+                {/*</Search>*/}
                 <Grid container width="fit-content" sx={(theme) => ({
                     padding: theme.spacing(1),
                     paddingLeft: theme.spacing(2),
                 })}>
                     <IconButton
-                        onClick={() => window.open('https://github.com/lastbyte', '_blank')}><GitHub/></IconButton>
+                        onClick={() => window.open('https://github.com/lastbyte/tools', '_blank')}><GithubIcon/></IconButton>
                     <IconButton
                         sx={{flexGrow: 1, display: {xs: 'none', sm: 'block'}}}
-                        onClick={() => window.open('https://www.linkedin.com/in/lastbyte/', '_blank')}><LinkedIn/></IconButton>
+                        onClick={() => window.open('https://www.linkedin.com/in/lastbyte/', '_blank')}><LinkedInIcon/></IconButton>
                 </Grid>
             </Toolbar>
         </AppBar>

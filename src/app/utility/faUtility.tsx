@@ -1,5 +1,5 @@
 import React from "react";
-import {faMarkdown} from "@fortawesome/free-brands-svg-icons";
+import {faGithubSquare, faLinkedin, faMarkdown} from "@fortawesome/free-brands-svg-icons";
 import {SvgIcon} from "@mui/material";
 import {faCode, faFileCode, faFont, faHashtag, faPalette} from "@fortawesome/free-solid-svg-icons";
 
@@ -29,6 +29,64 @@ export const MarkDownIcon = React.forwardRef<SVGSVGElement, any>(
         )}
         </SvgIcon>
     );
+    },
+);
+
+export const LinkedInIcon = React.forwardRef<SVGSVGElement, any>(
+    (props, ref) => {
+        const { icon } = props;
+
+        const {
+            icon: [width, height, , , svgPathData],
+        } = faLinkedin;
+
+        return (
+            <SvgIcon ref={ref} viewBox={`0 0 ${width} ${height}`}>
+                {typeof svgPathData === 'string' ? (
+                    <path d={svgPathData} />
+                ) : (
+                    /**
+                     * A multi-path Font Awesome icon seems to imply a duotune icon. The 0th path seems to
+                     * be the faded element (referred to as the "secondary" path in the Font Awesome docs)
+                     * of a duotone icon. 40% is the default opacity.
+                     *
+                     * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
+                     */
+                    svgPathData.map((d: string, i: number) => (
+                        <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
+                    ))
+                )}
+            </SvgIcon>
+        );
+    },
+);
+
+export const GithubIcon = React.forwardRef<SVGSVGElement, any>(
+    (props, ref) => {
+        const { icon } = props;
+
+        const {
+            icon: [width, height, , , svgPathData],
+        } = faGithubSquare;
+
+        return (
+            <SvgIcon ref={ref} viewBox={`0 0 ${width} ${height}`}>
+                {typeof svgPathData === 'string' ? (
+                    <path d={svgPathData} />
+                ) : (
+                    /**
+                     * A multi-path Font Awesome icon seems to imply a duotune icon. The 0th path seems to
+                     * be the faded element (referred to as the "secondary" path in the Font Awesome docs)
+                     * of a duotone icon. 40% is the default opacity.
+                     *
+                     * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
+                     */
+                    svgPathData.map((d: string, i: number) => (
+                        <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
+                    ))
+                )}
+            </SvgIcon>
+        );
     },
 );
 
