@@ -60,7 +60,7 @@ export default function SearchAppBar() {
     const dispatch = useDispatch();
     const isDrawerOpen = useSelector((state: any) => state.drawer.isOpen);
     return (
-        <AppBar position="relative" elevation={5}>
+        <AppBar position="sticky" elevation={5}>
             <Toolbar>
                 <IconButton
                     size="large"

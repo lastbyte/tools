@@ -6,6 +6,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {setActiveTab, setCssContent, setHtmlContent, setJsContent} from "@redux/reducers/liveEditorReducer";
 import CodeFlask from 'codeflask';
 import useWindowResize from "@app/hooks/windowResizeHook";
+import CodeMirror, {ViewUpdate} from "@uiw/react-codemirror";
+import {html} from "@codemirror/lang-html";
+import {css} from "@codemirror/lang-css";
+import {javascript} from "@codemirror/lang-javascript";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,49 +26,37 @@ const HtmlLiveEditorWidget: React.FC<any> = () => {
 
     const editorRef = useRef(null);
     const activeTab = useSelector((state: any) => state.liveEditor.activeTab);
-    const html = useSelector((state: any) => state.liveEditor.htmlContent);
-    const css = useSelector((state: any) => state.liveEditor.cssContent);
-    const js = useSelector((state: any) => state.liveEditor.jsContent);
+    const htmlContent = useSelector((state: any) => state.liveEditor.htmlContent);
+    const cssContent = useSelector((state: any) => state.liveEditor.cssContent);
+    const jsContent = useSelector((state: any) => state.liveEditor.jsContent);
+    const selectedTheme = useSelector((state: any) => state.theme.value);
     const dispatch = useDispatch();
 
     const [width, height] = useWindowResize();
 
-    useEffect(() => {
-        if (editorRef.current) {
-            const codeEditor = new CodeFlask(editorRef.current, {language: 'html', lineNumbers: true, defaultTheme : true });
-            codeEditor.updateCode(html);
-            codeEditor.onUpdate( () => {dispatch(setHtmlContent(codeEditor.getCode()))})
-        }
-    }, [])
-
-    useEffect(() => {
+    function handleChange(val: string, vUpdate: ViewUpdate) {
         switch (activeTab) {
             case 0 :
-                if (editorRef.current) {
-                    const codeEditor = new CodeFlask(editorRef.current, {language: 'html', lineNumbers: true});
-                    codeEditor.updateCode(html);
-                    codeEditor.onUpdate( () => {dispatch(setHtmlContent(codeEditor.getCode()))})
-                }
-                break;
+                dispatch(setHtmlContent(val));
+                return;
             case 1 :
-                if (editorRef.current) {
-                    const codeEditor = new CodeFlask(editorRef.current, {language: 'css', lineNumbers: true});
-                    codeEditor.updateCode(css);
-                    codeEditor.onUpdate( () => {dispatch(setCssContent(codeEditor.getCode()))})
-                }
-                break;
+                dispatch(setCssContent(val));
+                return;
             case 2 :
-                if (editorRef.current) {
-                    const codeEditor = new CodeFlask(editorRef.current, {language: 'js', lineNumbers: true});
-                    codeEditor.updateCode(js);
-                    codeEditor.onUpdate( () => {dispatch(setJsContent(codeEditor.getCode()))})
-                }
-                break;
+                dispatch(setJsContent(val));
+                return;
         }
-    }, [activeTab])
+    }
 
     return (<>
-        <CardContent sx={(theme) => ({display: 'flex', flexDirection : width < 1000 ? 'column' : "row",width : width < 1000 ? '100%' : "row", flex: 1, boxSizing: 'border-box', gap: theme.spacing(1)})}>
+        <CardContent sx={(theme) => ({
+            display: 'flex',
+            flexDirection: width < 1000 ? 'column' : "row",
+            width: width < 1000 ? '100%' : "row",
+            flex: 1,
+            boxSizing: 'border-box',
+            gap: theme.spacing(1)
+        })}>
             <Grid item xs={width < 1000 ? 12 : 6} sx={(theme) => ({
                 display: 'flex',
                 flexDirection: 'column',
@@ -73,7 +65,7 @@ const HtmlLiveEditorWidget: React.FC<any> = () => {
                 gap: theme.spacing(1)
             })}>
 
-                <Tabs sx={(theme) => ({background: theme.palette.grey[900]})} value={activeTab}
+                <Tabs sx={(theme) => ({background: theme.palette.background.paper})} value={activeTab}
                       aria-label="live editor tabs">
                     <Tab onClick={() => {
                         dispatch((setActiveTab(0)))
@@ -85,16 +77,12 @@ const HtmlLiveEditorWidget: React.FC<any> = () => {
                         dispatch((setActiveTab(2)))
                     }} label="script.js"/>
                 </Tabs>
-                <Grid sx={(theme) => ({
-                    boxSizing: 'border-box',
-                    background: theme.palette.grey[700],
-                    height: "100%",
-                    fontSize: "12px",
-                    position : "relative",
+                <CodeMirror height="590px" style={{
+                    fontSize: "14px",
+                    position: "relative",
                     fontFamily: '"Fira Mono" !important',
-                    '& > span': {fontFamily: '"Fira Mono" !important'}
-                })} ref={editorRef}>
-                </Grid>
+                }} value={activeTab === 0 ? htmlContent : activeTab === 1 ? cssContent : jsContent} lang={"json"} theme={selectedTheme}
+                            extensions={activeTab === 0 ? [html()] : activeTab === 1 ? [css()] : [javascript()]} onChange={handleChange}></CodeMirror>
             </Grid>
             <Grid item xs={width < 1000 ? 12 : 6} sx={(theme) => ({
                 boxSizing: 'border-box',
@@ -111,7 +99,7 @@ const HtmlLiveEditorWidget: React.FC<any> = () => {
                     width: "100%",
                     background: "white",
                     borderRadius: "8px"
-                }} height="100%" width="100%" srcDoc={`<style>${css}</style>${html}<script>${js}</script>`}></iframe>
+                }} height="100%" width="100%" srcDoc={`<style>${cssContent}</style>${htmlContent}<script>${jsContent}</script>`}></iframe>
             </Grid>
         </CardContent>
     </>);

@@ -5,6 +5,7 @@ import hashGeneratorReducer from "@redux/reducers/hashGeneratorReducer";
 import RegexMatcherReducer from "@redux/reducers/regexMatcherReducer";
 import LiveEditorReducer from "@redux/reducers/liveEditorReducer";
 import NotificationReducer from "@redux/reducers/noitificationReducer";
+import JsonViewerReducer from "@redux/reducers/jsonViewerReducer";
 
 export default configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
         notification: NotificationReducer,
         hashGenerator: hashGeneratorReducer,
         regexMatcher: RegexMatcherReducer,
-        liveEditor : LiveEditorReducer
+        liveEditor : LiveEditorReducer,
+        jsonViewer : JsonViewerReducer
     },
 })

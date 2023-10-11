@@ -9,3 +9,10 @@ body,html {
     height: 100%;
     overflow: scroll;
 }
+
+/*style formatter*/
+
+.json-formatter-children, .json-formatter-row, .json-formatter-kqy, .json-formatter-value, .json-formatter-preview-text {
+    font-family: 'Fira Mono' !important;
+    font-size: 1rem;
+}

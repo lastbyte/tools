@@ -24,6 +24,7 @@ import SearchAppBar from "@components/appBar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import NotificationBar from "@app/utility/notifier";
+import JsonViewerWidget from "@components/jsonViewerWidget";
 
 interface HomeProps {
 
@@ -58,7 +59,7 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
             <SearchAppBar/>
             <Grid spacing={2} container sx={(theme) => ({
                 background: theme.palette.background.default,
-                padding: theme.spacing(0,2),
+                padding: theme.spacing(0,2, 2, 2),
                 marginTop: theme.spacing(2),
                 flex: 1,
                 justifyContent: "flex-start",
@@ -85,6 +86,8 @@ const Home: React.FC<HomeProps> = (props: HomeProps) => {
                         component={MarkdownEditorWidget} height="auto"/>
                 <Widget item xs={12} sm={12} md={12} lg={12} xl={12} title="Live editor" icon={FileCodeIcon}
                         component={HtmlLiveEditorWidget} height="760"/>
+                <Widget item xs={12} sm={12} md={12} lg={12} xl={12} title="JSON Explorer" icon={FileCodeIcon}
+                        component={JsonViewerWidget} height="760"/>
             </Grid>
         </Grid>
         <Drawer

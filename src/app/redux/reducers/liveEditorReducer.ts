@@ -5,7 +5,7 @@ import {languages, THEME} from "@common/constants";
 export const liveEditorSlice = createSlice({
     name: 'liveEditor',
     initialState : {
-        activeTab : 1,
+        activeTab : 0,
         htmlContent : '<h1>This is a live editor</h1>\n' +
             '<button id="btn">click me </button>',
         cssContent : 'h1 { color : greenyellow}',
